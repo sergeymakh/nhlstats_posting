@@ -28,8 +28,8 @@ jobs:
       - name: Create SSH Key and write hosts
         run: |
           mkdir -p ~/.ssh/
-          echo "${{ secrets.DEVUSER_SSH_PRIVATE_KEY}}" > ../private.key
-          sudo chmod 600 ../private.key
+          echo "${{ secrets.DEVUSER_SSH_PRIVATE_KEY}}" > ../id_ed25519
+          sudo chmod 600 ../id_ed25519
           echo "${{ secrets.TEST_HOST}}" > ~/.ssh/known_hosts
           ssh -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}
       - name: Deploy with rsync
