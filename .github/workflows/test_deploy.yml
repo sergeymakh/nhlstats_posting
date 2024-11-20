@@ -28,6 +28,7 @@ jobs:
       - name: Create SSH Key and write hosts
         run: |
           mkdir -p ~/.ssh/
+          echo "${{ secrets.DEVUSER_SSH_PRIVATE_KEY}}" > ~/.ssh/id_ed25519
           
 
       - name: Deploy with rsync
