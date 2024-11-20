@@ -31,8 +31,8 @@ jobs:
           echo "${{ secrets.DEVUSER_SSH_PRIVATE_KEY}}" > ~/.ssh/id_ed25519
           sudo chmod 700 ~/.ssh
           sudo chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_HOST}} > ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ vars.TEST_HOST_PORT}} ${{ vars.TEST_HOST}} > ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -rav -e 'ssh -p ${{ secrets.TEST_HOST_PORT}}' --delete build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:/home/${{ secrets.TEST_USERNAME}}/nhlstats_posting/
+        run: rsync -rav -e 'ssh -p ${{ vars.TEST_HOST_PORT}}' --delete build/ ${{ vars.TEST_USERNAME}}@${{ vars.TEST_HOST}}:/home/${{ vars.TEST_USERNAME}}/nhlstats_posting/
       
