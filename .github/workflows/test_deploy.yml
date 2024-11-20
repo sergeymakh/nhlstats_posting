@@ -27,7 +27,7 @@ jobs:
           path: build
       - name: Create SSH Key and write hosts
         run: |
-          mkdir -p ~/.ssh/
+          mkdir ~/.ssh/
           # echo "${{ secrets.DEVUSER_SSH_PRIVATE_KEY}}" > ~/.ssh/id_ed25519
           # sudo chmod 600 ~/.ssh/id_ed25519
           # ssh-keyscan -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_HOST}} > ~/.ssh/known_hosts
