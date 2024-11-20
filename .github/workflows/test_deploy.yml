@@ -33,5 +33,5 @@ jobs:
           ssh-keyscan -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_HOST}} > ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -rav --delete -e 'ssh -p ${{ secrets.TEST_HOST_PORT}}' build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:/home/nhlstat/
+        run: rsync -rav -e 'ssh -p ${{ secrets.TEST_HOST_PORT}}' build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:/home/${{ secrets.TEST_USERNAME}}/
       
