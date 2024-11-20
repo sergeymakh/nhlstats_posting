@@ -30,6 +30,7 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.DEVUSER_SSH_PRIVATE_KEY}}" > ~/.ssh/id_ed25519
           sudo chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_HOST}} > ~/.ssh/known_hosts
 
       - name: Deploy with rsync
         run: rsync -rav --delete build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:${{ secrets.TEST_HOST_PORT}}/
