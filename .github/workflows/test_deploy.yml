@@ -34,5 +34,5 @@ jobs:
           ssh -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}
 
       - name: Deploy with rsync
-        run: rsync -rav --delete 'ssh -p ${{ secrets.TEST_HOST_PORT}}' build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:/
+        run: rsync -rav --delete -e 'ssh -p ${{ secrets.TEST_HOST_PORT}}' build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:/
       
