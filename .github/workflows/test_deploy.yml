@@ -32,8 +32,7 @@ jobs:
           sudo chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_HOST}} > ~/.ssh/known_hosts
           ssh -p ${{ secrets.TEST_HOST_PORT}} ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}
-          rsync -rav --delete build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:/
-          
+
       - name: Deploy with rsync
-        run: rsync -rav --delete build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:${{ secrets.TEST_HOST_PORT}}/
+        run: rsync -rav --delete 'ssh -p ${{ secrets.TEST_HOST_PORT}}' build/ ${{ secrets.TEST_USERNAME}}@${{ secrets.TEST_HOST}}:/
       
